@@ -7,6 +7,9 @@ public class GameManager_O : MonoBehaviour {
 	[SerializeField] private Image clear;
 	[SerializeField] private Animator anim;
 	[SerializeField] private string BoolName;
+	[SerializeField] private Image over;
+	[SerializeField] private Animator anim2;
+	[SerializeField] private string BoolName2;
 
 	// Use this for initialization
 	void Start () {
@@ -26,8 +29,8 @@ public class GameManager_O : MonoBehaviour {
 			anim.SetBool (BoolName, true);
 		}
 		if (state == 2) {
-			clear.enabled = true;
-			anim.SetBool (BoolName, true);
+			over.enabled = true;
+			anim2.SetBool (BoolName2, true);
 		}
 	}
 }
