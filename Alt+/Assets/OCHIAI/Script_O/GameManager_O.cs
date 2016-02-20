@@ -26,9 +26,11 @@ public class GameManager_O : MonoBehaviour {
 		}
 		if (state == 1) {
 			clear.enabled = true;
+			over.enabled = false;
 			anim.SetBool (BoolName, true);
 		}
 		if (state == 2) {
+			clear.enabled = false;
 			over.enabled = true;
 			anim2.SetBool (BoolName2, true);
 		}
