@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class View_Score : MonoBehaviour {
-
+    /*
 	private gameObject player;
 	private bool gameover_flag=false; // ゲームオーバーフラグ
 	public Text t_score;
@@ -39,5 +39,5 @@ public class View_Score : MonoBehaviour {
 		t_score.text = "Score:\n" + score.ToString ();
 	}
 
-
+    */
 }

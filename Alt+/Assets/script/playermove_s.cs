@@ -23,7 +23,7 @@ public class playermove_s : MonoBehaviour {
     {
 
         Vector3 Position = transform.position;
-        int i = 1;
+        //int cnt= 0;
 
         if (Input.GetKey("right"))
         {
@@ -44,39 +44,25 @@ public class playermove_s : MonoBehaviour {
 
         }
         transform.position = Position;
-
         /*
-       
-        for (i = 1; i < 3; i++)
+        if (Input.GetKey("a"))
+                {
+                   cnt += 1;
+                    GetComponent<BoxCollider>().enabled = false;
+                }
+        if (cnt == 1)
         {
-            if (i == 1)
-            {
-                if (Input.GetKey("a"))
-                {
-                    GetComponent<BoxCollider>().enabled = false;
-                    i = 2;
-                }
-            }
-            if (i == 2)
-            {
-                if (Input.GetKey("a"))
-                {
-                    GetComponent<BoxCollider>().enabled = false;
-                    i = 3;
-                }
-            }
-            if (i == 3)
-            {
-                if (Input.GetKey("a"))
-                {
-                    GetComponent<BoxCollider>().enabled = true;
-                 
-                }
-            }
+            GetComponent<BoxCollider>().enabled = false;
+        }
+        if (cnt == 2)
+        {
+            GetComponent<BoxCollider>().enabled = false;
+        }
+        if (cnt == 3)
+        {
+            GetComponent<BoxCollider>().enabled = true;
         }
         */
-      
-  
 
 
     }
