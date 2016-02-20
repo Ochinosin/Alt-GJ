@@ -18,7 +18,14 @@ public class GameManager_O : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			state = 1;
 		}
+		if (Input.GetKeyDown (KeyCode.A)) {
+			state = 2;
+		}
 		if (state == 1) {
+			clear.enabled = true;
+			anim.SetBool (BoolName, true);
+		}
+		if (state == 2) {
 			clear.enabled = true;
 			anim.SetBool (BoolName, true);
 		}
