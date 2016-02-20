@@ -15,7 +15,7 @@ public class GUICtrl : MonoBehaviour {
 		hp.value=100;
 		timeGUI.text = time.ToString ();
 	}
-		
+
 	void Update () {
 
 		if(time<10f) help = true; // お助け判定関数ができたら変更
@@ -28,8 +28,8 @@ public class GUICtrl : MonoBehaviour {
 			helpGUI.color = Color.green;
 			helpGUI.text = "お助け\n準備中";
 		}
-			
-		hp.value--; // プレイヤーobjできたら変更
+
+//		hp.value--; // プレイヤーobjできたら変更
 
 		if (time < 10f) {
 			timeGUI.color = Color.red;
@@ -38,7 +38,6 @@ public class GUICtrl : MonoBehaviour {
 				timeGUI.color = new Color (timeGUI.color.r, timeGUI.color.g, timeGUI.color.b, 0.0f);
 			else
 				timeGUI.color = new Color (timeGUI.color.r, timeGUI.color.g, timeGUI.color.b, 1.0f);
-
 		}
 
 		// 残り時間表示
