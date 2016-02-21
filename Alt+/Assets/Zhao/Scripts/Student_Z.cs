@@ -3,18 +3,22 @@ using System.Collections;
 
 public class Student_Z : MonoBehaviour {
 	bool stop = false;
-	float time = 0.7f;
+	float time;
 	public static int turnNum = 0;
-	// Use this for initialization
+	public static int road = 0;
+
 	void Start () {
 		Destroy (gameObject, 5f);
+		if (road == 1)
+			time = 0.25f;
+		if (road == 2)
+			time = 0.4f;
 	}
-
-	// Update is called once per frame
+		
 	void Update () {
 		if (stop == false) 
 		{
-			transform.Translate (new Vector3(0,0,-0.5f) * Time.deltaTime);
+			transform.Translate (new Vector3(0,0,-5f) * Time.deltaTime);
 			time -= Time.deltaTime;
 			if (time <= 0) {
 				stop = true;

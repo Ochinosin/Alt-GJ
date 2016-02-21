@@ -3,13 +3,13 @@ using System.Collections;
 
 public class View_Score : MonoBehaviour {
 
-	private gameObject player;
+	private GameObject player;
 	private bool gameover_flag=false; // ゲームオーバーフラグ
-	public Text t_score;
+	public string t_score;
 	public int score;
 	public bool g_clear; // ゲームクリアしたか否か
-
-	public GameObject
+	float time;
+	int num;
 
 	void Start () {
 
@@ -28,15 +28,15 @@ public class View_Score : MonoBehaviour {
 
 
 	public void gameOver(){
-		Destroy (); // 時間表示とお助け表示の削除
+		Destroy (gameObject); // 時間表示とお助け表示の削除
 		if (g_clear) { // ゲームクリア時は1000+残り時間*10
-			score = 1000 + time*10;
+			score = 1000 + (int)time*10;
 		} else { // ゲームオーバー時は移動距離
 			score = num; // 移動距離
 		}
 
 		// スコア表示ラベルに値を入れる
-		t_score.text = "Score:\n" + score.ToString ();
+		t_score = "Score:\n" + score.ToString ();
 	}
 
 
