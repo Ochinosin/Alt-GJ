@@ -7,15 +7,16 @@ public class Player_Z : MonoBehaviour {
 	Vector3 teacherPoint;
 	public Vector3 forse ;
 	public float power = 6f;
-
 	void Start () {
 		character = GetComponent<GameObject> ();
+
 	}
 
 	void Update () {
 		transform.Translate (0.1f,0,0);
 		teacherPoint = this.transform.position;
 		teacherPoint.x -= 10f;
+
 	}
 
 	void OnTriggerEnter()

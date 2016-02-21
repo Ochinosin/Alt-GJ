@@ -4,7 +4,9 @@ using System.Collections;
 public class Player_O : MonoBehaviour {
 	public Vector3 SPEED = new Vector3(0.5f, 0.5f, 0.5f);
 	CharacterController characterControllar;
-
+	Vector3 teacherPoint;
+	public Vector3 forse ;
+	public float power = 6f;
 	public GameObject Canvas;
 
 	// Use this for initialization
@@ -54,6 +56,13 @@ public class Player_O : MonoBehaviour {
 		{
 			Vector3 Position = transform.position;
 			Position.z += 0.5f;
+		}
+		if (GetComponent<Collider>().tag == "") 
+		{
+			var prefab = Resources.Load("Teacher");
+			GameObject teacher = Instantiate(prefab,teacherPoint,Quaternion.identity) as GameObject;
+			var teacherRigidboby = teacher.GetComponent<Rigidbody> ();
+			teacherRigidboby.AddForce (forse * power*150f);
 		}
 	}
 }
