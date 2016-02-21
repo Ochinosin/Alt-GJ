@@ -1,18 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class View_Score : MonoBehaviour {
 
-	private GameObject player;
-	private bool gameover_flag=false; // ゲームオーバーフラグ
-	public string t_score;
-	public int score;
+	public Text t_time;
+	public Text t_help; 
+	public GameObject player;
+	public bool gameover_flag=false; // ゲームオーバーフラグ
+	public Text t_score;
+
+	public bool g_finish; // ゲームが終了したか否か
 	public bool g_clear; // ゲームクリアしたか否か
-	float time;
-	int num;
+
+	public float time;
+	public int num;
+
 
 	void Start () {
-
 	}
 	
 	void Update () {
@@ -22,13 +27,18 @@ public class View_Score : MonoBehaviour {
 		player_check ();
 	}
 
-	public void player_check(){
-		
+	void player_check(){
+		if(g_finish)
+		gameOver ();
 	}
 
 
-	public void gameOver(){
-		Destroy (gameObject); // 時間表示とお助け表示の削除
+	void gameOver(){
+		Destroy (t_help);
+		Destroy (t_time); // 時間表示とお助け表示の削除
+
+		int score;
+
 		if (g_clear) { // ゲームクリア時は1000+残り時間*10
 			score = 1000 + (int)time*10;
 		} else { // ゲームオーバー時は移動距離
@@ -36,7 +46,9 @@ public class View_Score : MonoBehaviour {
 		}
 
 		// スコア表示ラベルに値を入れる
-		t_score = "Score:\n" + score.ToString ();
+		t_score.text = "Score:\n" + score.ToString ();
+
+		gameover_flag = true;
 	}
 
 
