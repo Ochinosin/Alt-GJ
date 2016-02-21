@@ -26,6 +26,7 @@ public class GameManager_O : MonoBehaviour {
 	[SerializeField] private AudioSource SE;
 	[SerializeField] private AudioClip gameOver;
 	[SerializeField] private AudioClip gameClear;
+	[SerializeField] private AudioSource AsiOto;
 
 	public GameObject Player;
 	public GameObject Camera;
@@ -60,6 +61,7 @@ public class GameManager_O : MonoBehaviour {
 				CL = true;
 			}
 			anim4.SetBool ("Pstop", true);
+			AsiOto.enabled = false;
 			Player.GetComponent<Player_O> ().enabled = false;
 			//Camera.GetComponent<Camera_O> ().enabled = false;
 			clear.enabled = true;
@@ -67,12 +69,13 @@ public class GameManager_O : MonoBehaviour {
 			GetComponent<GUICtrl_O> ().enabled = false;
 			anim.SetBool (BoolName, true);
 			if (Input.GetKeyDown (KeyCode.Return)) {
-				col = 1;
+				col = 2;
 			}
 		}
 		if (state == 2) {
 			BGM.volume = 0.0f;
 			anim4.SetBool ("Pstop", true);
+			AsiOto.enabled = false;
 			Player.GetComponent<Player_O> ().enabled = false;
 			//Camera.GetComponent<Camera_O> ().enabled = false;
 			time.enabled = false;
@@ -81,16 +84,17 @@ public class GameManager_O : MonoBehaviour {
 			over.enabled = true;
 			anim2.SetBool (BoolName2, true);
 			if (Input.GetKeyDown (KeyCode.Return)) {
-				col = 1;
+				col = 2;
 			}
 		}
 		if (col == 0) {
 			black.color -= new Color (0f, 0f, 0f, 0.02f);
 			if(black.color.a <= 0f){
 				black.color += new Color (0f, 0f, 0f, 0.0f);
+				col = 1;
 			}
 		}
-		if (col == 1) {
+		if (col == 2) {
 			anim.speed = 0;
 			black.color += new Color (0f, 0f, 0f, 0.02f);
 			if(black.color.a >= 1f){
@@ -114,6 +118,7 @@ public class GameManager_O : MonoBehaviour {
 				Player.GetComponent<Player_O> ().enabled = true;
 				//Camera.GetComponent<Camera_O> ().enabled = true;
 				anim4.SetBool (BoolName4, true);
+				AsiOto.enabled = true;
 				time.enabled = true;
 				help.enabled = true;
 				GetComponent<GUICtrl_O> ().enabled = true;
