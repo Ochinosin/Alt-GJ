@@ -45,5 +45,15 @@ public class Player_O : MonoBehaviour {
 		if (c.gameObject.tag == "ClearArea") {
 			Canvas.GetComponent<GameManager_O> ().state = 1;
 		}
+		if (c.tag == "Wall")
+		{
+			Vector3 Position = transform.position;
+			Position.z -= 0.5f;
+		}
+		if (c.tag == "Wall2")
+		{
+			Vector3 Position = transform.position;
+			Position.z += 0.5f;
+		}
 	}
 }

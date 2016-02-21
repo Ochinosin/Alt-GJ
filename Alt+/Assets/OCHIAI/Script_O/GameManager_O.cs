@@ -28,6 +28,7 @@ public class GameManager_O : MonoBehaviour {
 	[SerializeField] private AudioClip gameClear;
 
 	public GameObject Player;
+	public GameObject Camera;
 	public GameObject Canvas;
 	private bool OV;
 	private bool CL;
@@ -58,14 +59,22 @@ public class GameManager_O : MonoBehaviour {
 				SE.PlayOneShot (gameClear);
 				CL = true;
 			}
+			anim4.SetBool ("Pstop", true);
+			Player.GetComponent<Player_O> ().enabled = false;
+			//Camera.GetComponent<Camera_O> ().enabled = false;
 			clear.enabled = true;
 			over.enabled = false;
 			GetComponent<GUICtrl_O> ().enabled = false;
 			anim.SetBool (BoolName, true);
+			if (Input.GetKeyDown (KeyCode.Return)) {
+				col = 1;
+			}
 		}
 		if (state == 2) {
 			BGM.volume = 0.0f;
+			anim4.SetBool ("Pstop", true);
 			Player.GetComponent<Player_O> ().enabled = false;
+			//Camera.GetComponent<Camera_O> ().enabled = false;
 			time.enabled = false;
 			help.enabled = false;
 			clear.enabled = false;
@@ -103,6 +112,7 @@ public class GameManager_O : MonoBehaviour {
 			animInfo = start.GetComponent<Animator> ().GetCurrentAnimatorStateInfo (0);
 			if (animInfo.normalizedTime >= 1.0f) {
 				Player.GetComponent<Player_O> ().enabled = true;
+				//Camera.GetComponent<Camera_O> ().enabled = true;
 				anim4.SetBool (BoolName4, true);
 				time.enabled = true;
 				help.enabled = true;
