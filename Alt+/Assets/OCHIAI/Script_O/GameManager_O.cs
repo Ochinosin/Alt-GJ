@@ -27,6 +27,7 @@ public class GameManager_O : MonoBehaviour {
 	[SerializeField] private AudioClip gameOver;
 	[SerializeField] private AudioClip gameClear;
 	[SerializeField] private AudioSource AsiOto;
+	[SerializeField] private Animator nabe;
 
 	public GameObject Player;
 	public GameObject Camera;
@@ -83,6 +84,7 @@ public class GameManager_O : MonoBehaviour {
 			clear.enabled = false;
 			over.enabled = true;
 			anim2.SetBool (BoolName2, true);
+			nabe.SetTrigger ("nabegata");
 			if (Input.GetKeyDown (KeyCode.Return)) {
 				col = 2;
 			}
