@@ -1,29 +1,38 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class playermove_s : MonoBehaviour {
 
     public Vector3 SPEED = new Vector3(0.5f, 0.5f, 0.5f);
     CharacterController characterControllar;
-    
-   
+    int cnt = 0;
+    float countTime;
+
 
     // Use this for initialization
     void Start()
     {
-      
+        characterControllar = GetComponent<CharacterController>();
+        Collider collider = GetComponent<Collider>();
 
     }
 	// Update is called once per frame
 	void Update () {
       Move();
-        
+        countTime -= Time.deltaTime;
+        if (countTime <= 0)
+            countTime = 0;
+        if(countTime == 0)
+            gameObject.GetComponent<BoxCollider>().enabled = true;
+
     }
     void Move()
     {
 
         Vector3 Position = transform.position;
-        //int cnt= 0;
+      
+        
 
         if (Input.GetKey("right"))
         {
@@ -44,33 +53,46 @@ public class playermove_s : MonoBehaviour {
 
         }
         transform.position = Position;
-        /*
-        if (Input.GetKey("a"))
-                {
-                   cnt += 1;
-                    GetComponent<BoxCollider>().enabled = false;
-                }
-        if (cnt == 1)
+        
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            GetComponent<BoxCollider>().enabled = false;
+
+            cnt += 1;
+            countTime = 3f;
+            if (cnt == 1)
+            {
+                gameObject.GetComponent<BoxCollider>().enabled = false;
+
+            }
+            if (cnt == 2)
+            {
+                gameObject.GetComponent<BoxCollider>().enabled = false;
+            }
+
+            if (cnt == 3)
+            {
+                gameObject.GetComponent<BoxCollider>().enabled = false;
+            }
+            if (cnt >= 4)
+            {
+                gameObject.GetComponent<BoxCollider>().enabled = true;
+            }
+
+            Debug.Log(cnt);
         }
-        if (cnt == 2)
-        {
-            GetComponent<BoxCollider>().enabled = false;
-        }
-        if (cnt == 3)
-        {
-            GetComponent<BoxCollider>().enabled = true;
-        }
-        */
+       
+
+       
+       
+        
 
 
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag=="")
+        if (other.tag=="enemy")
         {
-            Destroy(other.gameObject);
+            Application.LoadLevel(Application.loadedLevel);
         }
         if (other.tag == "")
         {
