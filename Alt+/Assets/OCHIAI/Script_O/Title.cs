@@ -7,17 +7,23 @@ public class Title : MonoBehaviour {
 	[SerializeField] private Animator anim;
 	[SerializeField] private int col = 0;
 	[SerializeField] private string StageTitle;
-	public Scrollbar hp;
-
+	[SerializeField] private AudioSource Tyaimu;
+	[SerializeField] private AudioSource Zawazawa;
+	[SerializeField] private float time;
 
 	// Use this for initialization
 	void Start () {
-	
+		time = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (col == 0) {
+			time += Time.deltaTime;
+			if (time >= 20.0f) {
+				Tyaimu.volume -= 0.0025f;
+				Zawazawa.volume -= 0.0025f;
+			}
 			if (Input.GetKeyDown (KeyCode.Return)) {
 				col = 1;
 			}
@@ -29,6 +35,8 @@ public class Title : MonoBehaviour {
 		}*/
 		if (col == 1) {
 			anim.speed = 0;
+			Tyaimu.volume -= 0.01f;
+			Zawazawa.volume -= 0.01f;
 			black.color += new Color (0f, 0f, 0f, 0.02f);
 			if(black.color.a >= 1f){
 				black.color += new Color (0f, 0f, 0f, 1.0f);
