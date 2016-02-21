@@ -42,7 +42,7 @@ public class View_Score : MonoBehaviour {
 		if (g_clear) { // ゲームクリア時は1000+残り時間*10
 			score = 1000 + (int)time*10;
 		} else { // ゲームオーバー時は移動距離
-			score = num; // 移動距離
+			score = num; // 移動距離(最初と最後のx座標の差)
 		}
 
 		// スコア表示ラベルに値を入れる
@@ -51,5 +51,8 @@ public class View_Score : MonoBehaviour {
 		gameover_flag = true;
 	}
 
+	void set_score(){
+
+	}
 
 }

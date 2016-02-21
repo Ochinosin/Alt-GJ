@@ -10,6 +10,10 @@ public class Title : MonoBehaviour {
 	[SerializeField] private AudioSource Tyaimu;
 	[SerializeField] private AudioSource Zawazawa;
 	[SerializeField] private float time;
+	[SerializeField] private AudioSource SE;
+	[SerializeField] private AudioClip enter;
+	[SerializeField] private Animator anim2;
+	[SerializeField] private string BoolName;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +29,8 @@ public class Title : MonoBehaviour {
 				Zawazawa.volume -= 0.0025f;
 			}
 			if (Input.GetKeyDown (KeyCode.Return)) {
+				SE.PlayOneShot (enter);
+				anim2.SetBool (BoolName, true);
 				col = 1;
 			}
 		}
@@ -37,7 +43,7 @@ public class Title : MonoBehaviour {
 			anim.speed = 0;
 			Tyaimu.volume -= 0.01f;
 			Zawazawa.volume -= 0.01f;
-			black.color += new Color (0f, 0f, 0f, 0.02f);
+			black.color += new Color (0f, 0f, 0f, 0.01f);
 			if(black.color.a >= 1f){
 				black.color += new Color (0f, 0f, 0f, 1.0f);
 				Application.LoadLevel (StageTitle);
