@@ -5,30 +5,44 @@ public class Door_Z : MonoBehaviour {
 
 	GameObject player;
 	public GameObject rotate;
-	Vector3 doorPosition;
+	Vector3 ballPosition;
+	Vector3 studentPosition;
 	float distance;
 	bool doorOpen = false;
+	bool studentAppear = false;
 	bool iteam = false;
-	float openTime = 0.3f;
+	float openTime = 3f;
 	float fallTime = 200;
-	float time = 0f;
+	float shaketime = 0f;
 	public int random;
 	public int ballorpeople;
 	public float ballSpead;
 	public int studentTurn;
+	public bool roadOnLeft;
 	public float distanceOfDoorShake;
 	public float distanceOfDoorOpen;
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player");
-		doorPosition = gameObject.transform.position;
-		doorPosition.z += 3f; 
+		ballPosition = gameObject.transform.position;
+		ballPosition.z += 3f; 
+		studentPosition = gameObject.transform.position;
+		studentPosition.z += 1f;
+		openTime /= 10f;
+		if (roadOnLeft == true) 
+		{
+			Student_Z.road = 1;
+		}
+		if (roadOnLeft == false) 
+		{
+			Student_Z.road = 2;
+		}
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		distance = Vector2.Distance (player.transform.position, doorPosition);
+		distance = Vector2.Distance (player.transform.position, gameObject.transform.position);
 		if (distance <= distanceOfDoorOpen) 
 		{
 			if (random  == 1) 
@@ -41,23 +55,24 @@ public class Door_Z : MonoBehaviour {
 					{
 						if (ballorpeople == 1) 
 						{
-							doorPosition.y -= 0.3f;
-							var prefab1 = Resources.Load ("Obj_Football");
-							GameObject football = Instantiate (prefab1, doorPosition, Quaternion.identity) as GameObject;
+							ballPosition.y -= 0.3f;
+							var prefab1 = Resources.Load ("Football");
+							GameObject football = Instantiate (prefab1, ballPosition, Quaternion.identity) as GameObject;
 							var teacherRigidboby = football.GetComponent<Rigidbody> ();
 							Vector3 forse = new Vector3 (0,0.2f,-1);
 							teacherRigidboby.AddForce (forse * ballSpead * 100f);
 						}
 
-						if (ballorpeople == 2)
-						{
-							var prefab2 = Resources.Load ("Student");
-							GameObject student = Instantiate (prefab2, doorPosition, Quaternion.identity) as GameObject;
-							Student_Z.turnNum = studentTurn;
-						}
-
 						doorOpen = true;
 					}
+					if (ballorpeople == 2 && studentAppear == false)
+					{
+						var prefab2 = Resources.Load ("Student");
+						GameObject student = Instantiate (prefab2, studentPosition, Quaternion.identity) as GameObject;
+						Student_Z.turnNum = studentTurn;
+						studentAppear = true;
+					}
+
 				}
 			}
 
@@ -72,8 +87,8 @@ public class Door_Z : MonoBehaviour {
 		} 
 		else if (distance <= distanceOfDoorShake) 
 		{
-			time += 1;
-			transform.position =  new Vector3(transform.position.x + Mathf.Sin(time)/50, transform.position.y , transform.position.z );
+			shaketime += 1;
+			transform.position =  new Vector3(transform.position.x + Mathf.Sin(shaketime)/50, transform.position.y , transform.position.z );
 		}
 	}
 }
